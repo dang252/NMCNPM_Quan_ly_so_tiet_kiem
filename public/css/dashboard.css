@@ -1,6 +1,5 @@
-@import url('profilebar.css');
 @import url('sidebar.css');
-
+@import url('profilebar.css');
 html {
     font-size: 62.5%;
 }
@@ -138,4 +137,25 @@ body {
     display: flex;
     align-items: center;
     /* justify-content: space-around; */
+}
+
+@media screen and (max-width: 1000px) {
+    .profilebar{
+        display: none;
+    }
+    .mainDashboard{
+        min-width: calc(100% - 225px);
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .sidebar{
+        display: none;
+    }
+    .mainDashboard{
+        min-width: 100%;
+    }
+    .sidebarButton{
+        display: flex;
+    }
 }

@@ -71,7 +71,7 @@
     margin:5%;
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
     .profilebar{
         display: none;
     }
@@ -90,4 +90,4 @@
     .sidebarButton{
         display: flex;
     }
-}
+} */
