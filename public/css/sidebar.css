@@ -20,7 +20,7 @@
 .sidebarHeader{
     min-width: 80%;
     font-weight: bold;
-    margin: 10%;
+    margin: 2rem;
 }
 
 .sidebar nav{
@@ -28,13 +28,18 @@
 }
 .logoutButton{
     min-width: 80%;
-    margin: 10%;
+    margin: 2rem 0;
+    padding: 0 2rem
 }
 
 .logoutButton a{
     color: #D36363;
 }
 
+.logoutButton:hover{
+    background-color: #E5E5E5;
+    /* color: #5B25B4; */
+}
 .sidebar .icon{
     width: 2.2rem;
     height: 2.2em;

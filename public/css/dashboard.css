@@ -150,6 +150,7 @@ body {
 
 @media screen and (max-width: 720px) {
     .sidebar{
+        /* min-width: 100%; */
         display: none;
     }
     .mainDashboard{

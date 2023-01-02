@@ -1,7 +1,7 @@
 <div class="container rounded-5 border vh-100">
         <div class="sidebar col-2 p-0">
             <div class="sidebarHeader">
-                <a href="#" class="">
+                <a href="#" class="sidebarHide">
                     <i class="icon iconSidebar"></i>
                     <span>Sổ tiết kiệm
                 </a>
@@ -93,3 +93,22 @@
             <div class="savingbook"></div>
         </div>
     </div>
+
+    <script>
+        $(".sidebarButton").click(function(){
+            $(".sidebar").css({"min-width": "100%", "display": "flex"})
+            //$(".sidebar").show();
+            $(".mainDashboard").hide();
+            $(".profilebar").hide();
+
+        })
+
+        $(".sidebarHide").click(function(){
+            //if($('.sidebar').attr)
+          //  $(".sidebar").hide()
+            //$(".mainDashboard").show();
+            $(".sidebar").removeAttr('style');
+            $(".mainDashboard").removeAttr('style');
+            $(".profilebar").removeAttr('style');
+        })
+    </script>
