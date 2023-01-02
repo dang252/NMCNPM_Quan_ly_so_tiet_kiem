@@ -10,7 +10,7 @@ module.exports = {
         res.render('dashboard', {
             title: "dashboard",
             style: "dashboard.css",
-            script: "#",
+            script: "dashboard.js",
             username: req.user.username,
             email: userInfo.email
         })
