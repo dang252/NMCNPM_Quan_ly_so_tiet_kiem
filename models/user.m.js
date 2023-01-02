@@ -17,7 +17,7 @@ module.exports = {
         [maxAccountId[0].max + 1, "CUST", user.username, user.password, maxCustomerId[0].max + 1])
     },
     updateCustomerInfo: async customer => {
-        await db.one('update customer set customer_name = $2, indentity_number=$3, phone_number=$4, email=$5, customer_address=$6 where customer_id = $1 returning *',
+        await db.one('update customer set customer_name = $2, identity_number=$3, phone_number=$4, email=$5, customer_address=$6 where customer_id = $1 returning *',
         [customer.customerID, customer.fullname, customer.citizenID, customer.phonenumber, customer.email, customer.address])
     },
     getAccountByUsername: async username=>{

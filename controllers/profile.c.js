@@ -16,7 +16,7 @@ module.exports = {
             fullname: userInfo.customer_name,
             phonenumber: userInfo.phone_number,
             address: userInfo.customer_address,
-            citizenID: userInfo.indentity_number,
+            citizenID: userInfo.identity_number,
             email: userInfo.email
         })
     },

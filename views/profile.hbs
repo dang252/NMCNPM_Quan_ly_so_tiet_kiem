@@ -9,23 +9,23 @@
         <form action="/profile" id="form" method="POST">
             <div class = "fullnameBox box">
                 <label for="fullname">Tên khách hàng:</label>
-                <input type="text" id="fullname" name="fullname" value="{{fullname}}" readonly>
+                <input type="text" id="fullname" name="fullname" value="{{fullname}}"  maxlength="30" readonly>
             </div>
             <div class = "addressBox box">
                 <label for="address">Địa chỉ:</label>
-                <input type="text" id="address" name="address" value="{{address}}" readonly>
+                <input type="text" id="address" name="address" value="{{address}}"  maxlength="80" readonly>
             </div>
             <div class = "citizenIDBox box">
                 <label for="citizenID">Số CMND/CCCD:</label>
-                <input type="text" id="citizenID" name="citizenID" value="{{citizenID}}" readonly>
+                <input type="text" id="citizenID" name="citizenID" value="{{citizenID}}"  maxlength="12" readonly>
             </div>
             <div class = "emailBox box">
                 <label for="email">Email:</label>
-                <input type="text" id="email" name="email" value="{{email}}" readonly>
+                <input type="text" id="email" name="email" value="{{email}}"  maxlength="40" readonly>
             </div>
             <div class = "phonenumberBox box">
                 <label for="phonenumber">Số điện thoại:</label>
-                <input type="text" id="phonenumber" name="phonenumber" value="{{phonenumber}}" readonly>
+                <input type="text" id="phonenumber" name="phonenumber" value="{{phonenumber}}"  maxlength="10" readonly>
             </div>
             <div id="btn_side">
                 <input id="confirmBtn" type="submit" value="confirm"></input>
