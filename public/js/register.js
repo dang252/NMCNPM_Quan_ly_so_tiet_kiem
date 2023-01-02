@@ -76,7 +76,6 @@ $("#form").submit(function(e) {
             alert('Password and re-enter password do not match');
             checkStep2 = false;
         }
-        // avoid to execute the actual submit of the form.
 
         var form = $(this);
         var actionUrl = form.attr('action');
@@ -96,52 +95,3 @@ $("#form").submit(function(e) {
         });
     }    
 });
-// registerBtn.addEventListener("click", () => {
-//     resetWarning();
-//     var userInfo = {
-//         usernameData: username.value,
-//         passData: password.value,
-//         emailData: email.value,
-//         repassData: repassword.value,
-//         nameData: fname.value,
-//         phoneData: phone.value,
-//     };
-
-//     var checkStep1 = checkUserInfo(userInfo);
-//     if(checkStep1 == true) {
-//         var checkStep2 = true;
-
-//         if(getDatabase()) { var userDatabase = getDatabase(); }
-//         else { var userDatabase = []; }
-
-//         for(var i = 0; i < userDatabase.length; ++i) {
-//             if(userDatabase[i].usernameData == userInfo.usernameData) {
-//                 alert('Username has already exist');
-//                 checkStep2 = false;
-//             }
-//             if(userDatabase[i].emailData == userInfo.emailData) {
-//                 alert('Email has already exist');
-//                 checkStep2 = false;
-//             }
-//             if(userDatabase[i].phoneData == userInfo.phoneData) {
-//                 alert('Phone has already exist');
-//                 checkStep2 = false;
-//             }
-//         }
-
-//         if(userInfo.passData != userInfo.repassData) {
-//             alert('Password and re-enter password do not match');
-//             checkStep2 = false;
-//         }
-        
-        
-//         if(checkStep2 == true) {
-//             userDatabase.push(userInfo);
-//             saveDatabase(userDatabase);
-//             alert('Register successfully');
-//             resetInput();
-//         } 
-
-//     }
-// });
-

@@ -60,31 +60,3 @@ $("#form").submit(function(e) {
     }    
 });
 
-// loginBtn.addEventListener("click", (e) => {
-//     resetWarning();
-//     var userInfo = {
-//         usernameData: username.value,
-//         passData: password.value
-//     };
-
-//     var checkStep1 = checkUserInfo(userInfo);
-//     if(checkStep1 == true) {
-//         var checkStep2 = false;
-//         if(getDatabase()) { var userDatabase = getDatabase(); }
-//         else { var userDatabase = []; }
-
-//         for(var i = 0; i < userDatabase.length; ++i) {
-//             if(userDatabase[i].usernameData == userInfo.usernameData && userDatabase[i].passData == userInfo.passData) {
-//                 checkStep2 = true;
-//                 alert('Login successfully');
-//             }
-//         }
-        
-//         if(checkStep2 == false) {
-//             alert('Wrong username or password');
-//             e.preventDefault();
-//         }
-//     }
-//     else { e.preventDefault(); }  
-// });
-
