@@ -6,11 +6,12 @@ module.exports = {
             return res.redirect('/login');
         }
         const userInfo = await userM.getCustomerByUsername(req.user.username)
-        console.log(userInfo)
+        // console.log(userInfo)
         res.render('dashboard', {
-            title: "dashboard",
+            active: {dashboard: true},
+            layout: "working",
+            title: "Dashboard",
             style: "dashboard.css",
-            script: "dashboard.js",
             username: req.user.username,
             email: userInfo.email
         })
