@@ -23,6 +23,7 @@ module.exports = {
             layout: "working",
             title: "Dashboard",
             style: "dashboard.css",
+            script: "dashboard.js",
             summary: countSumary(passbooks),
             createable: createable,
             passbooks: passbooks,

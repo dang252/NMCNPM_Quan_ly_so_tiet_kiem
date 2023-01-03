@@ -30,7 +30,8 @@ registerR = require('./routes/register.r')
 loginR = require('./routes/login.r')
 dashboardR = require('./routes/dashboard.r')
 profileR = require('./routes/profile.r.js')
-createPBR = require('./routes/createPB.r')
+passbookR = require('./routes/passbook.r')
+
 app.get('/', (req, res) => {
     res.redirect('/register')
 })
@@ -39,7 +40,7 @@ app.use('/register', registerR)
 app.use('/login', loginR)
 app.use('/dashboard', dashboardR)
 app.use('/profile', profileR)
-app.use('/createPB', createPBR)
+app.use('/passbook', passbookR)
 app.get('/logout', (req, res) => {
     if(req.isAuthenticated()) {
         req.logout(err=>{

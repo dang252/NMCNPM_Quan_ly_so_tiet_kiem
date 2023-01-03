@@ -1,7 +1,15 @@
 const userM = require('../models/user.m');
 const passbookM = require('../models/passbook.m')
+
 module.exports = {
-     createPBGet: async (req, res) => {
+    passbookGet: (req,res) => {
+        res.redirect('/dashboard')
+    },
+    
+    passbookPost: (req, res) => {
+        res.send(req.body)
+    },
+    createGet: async (req, res) => {
         if(req.isUnauthenticated()){
             return res.redirect('/login');
         }
@@ -28,8 +36,8 @@ module.exports = {
             citizenID: userInfo.identity_number,
             date: today
         })
-     },
-     createPBPost: async (req, res) => {
+    },
+    createPost: async (req, res) => {
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         passbook = {
             type: req.body.type,
@@ -40,5 +48,5 @@ module.exports = {
         }
         await passbookM.addPB(passbook);
         res.send({msg: "succeed"})
-     }
+    }
 }
