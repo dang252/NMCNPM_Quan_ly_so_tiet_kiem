@@ -89,11 +89,12 @@
 
 .summary .sum p {
     color: #C6C6C6;
-    margin: auto 0 0 0;
+    margin: auto 0;
 }
 
 .summary .sum h1{
     color: #FFFFFF;
+    margin: auto 0;
 }
 
 .summary .send,
@@ -104,12 +105,13 @@
 .summary .send p,
 .summary .withdraw p {
     color:#787878;
-    margin: auto 0 0 0;
+    margin: auto 0;
 }
 
 .summary .send h1,
 .summary .withdraw h1 {
     color: #32383F;
+    margin: auto 0;
 }
 
 .mainDashboard .noti {

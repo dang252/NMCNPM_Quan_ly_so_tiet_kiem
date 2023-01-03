@@ -39,10 +39,15 @@
         <a href="/profile"><button type="button" class="editprofile">Edit Profile</button></a>
         {{#each passbooks}}
         <div class="savingbook">
-            <i class="icon iconWithdraw"></i>
+            <i class="icon iconSum"></i>
             <p>{{this.passbook_name}}</p>
             <h1>${{this.passbook_deposits}}</h1>
         </div>
         {{/each}}
+        {{#if createable}}
+        <div>
+            <a href="/createPB" class="addBtn"><i class="icon iconAdd"></i></a>
+        </div>
+        {{/if}}
     </div>
 </div>

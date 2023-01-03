@@ -16,12 +16,15 @@ module.exports = {
         }
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         const passbooks = await passbookM.getAll(req.user.customer_id)
+        if(passbooks.length < 10) createable = true
+        else createable = false
         res.render('dashboard', {
             active: {dashboard: true},
             layout: "working",
             title: "Dashboard",
             style: "dashboard.css",
             summary: countSumary(passbooks),
+            createable: createable,
             passbooks: passbooks,
             username: req.user.username,
             email: userInfo.email
