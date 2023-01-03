@@ -5,6 +5,10 @@ module.exports = {
         if(req.isUnauthenticated()){
             return res.redirect('/login');
         }
+        const passbooks = await passbookM.getAll(req.user.customer_id)
+        if(passbooks.length >= 10) {
+            return res.redirect('/dashboard');
+        }
         let date_ob = new Date();
         let date = ("0" + date_ob.getDate()).slice(-2);
         let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
