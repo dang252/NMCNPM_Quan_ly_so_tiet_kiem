@@ -69,8 +69,24 @@
     font-weight: 400;
     padding: 1% 5% 0 5%;
     margin:5%;
+    background: linear-gradient(65.44deg, #129C9C 0%, #A773FF 94.64%);
 }
 
+
+.savingbook p {
+    color: #C6C6C6;
+    margin: auto 0 0 0;
+}
+
+.savingbook h1{
+    color: #FFFFFF;
+}
+
+.savingbook .icon {
+    width: 4.4rem;
+    height: 4.4em;
+    background-position: 50%;
+}
 /* @media screen and (max-width: 1000px) {
     .profilebar{
         display: none;

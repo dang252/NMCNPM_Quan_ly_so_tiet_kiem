@@ -13,6 +13,7 @@ module.exports = {
             title: "Profile",
             style: "form.css",
             script: "profile.js",
+            form: true,
             fullname: userInfo.customer_name,
             phonenumber: userInfo.phone_number,
             address: userInfo.customer_address,

@@ -8,6 +8,26 @@ const citizenIDOrigin = $("#citizenID").val();
 const phonenumberOrigin = $("#phonenumber").val();
 const emailOrigin = $("#email").val();
 function checkinput() {
+    if($("#fullname").val() == '') {
+        alert("Bạn chưa nhập tên!");
+        return false;
+    }
+    if($("#email").val() == '') {
+        alert("Bạn chưa nhập email!");
+        return false;
+    }
+    if($("#phonenumber").val() == '') {
+        alert("Bạn chưa nhập số điện thoại!");
+        return false;
+    }
+    if($("#address").val() == "") {
+        alert("Bạn chưa nhập địa chỉ!");
+        return false;
+    }
+    if($("#citizenID").val() == "") {
+        alert("Bạn chưa nhập số CMND/CCCD!");
+        return false;
+    }
     if($("#fullname").val() != '' && nameRegex.test($("#fullname").val()) == false) {
         alert("Tên không hợp lệ!");
         return false;
@@ -42,28 +62,32 @@ $(".editProfileBtn").click(()=>{
     
 })
 
-$("#form").submit(function(e) {
-    e.preventDefault();
-    if(checkinput()){
-        if(confirm("are you sure?")) {
-            var form = $(this);
-            var actionUrl = form.attr('action');
-            $.ajax({
-                type: "POST",
-                url: actionUrl,
-                data: form.serialize(), // serializes the form's elements.
-                success: function(data)
-                {
-                if(data.msg !== "succeed") alert(data.msg); 
-                else {
-                    alert("Cập nhật thành công!")
-                    window.location.replace("/profile");
-                }
-                }
-            });
-        }
-        else {
+var confirmMSG = "Xác nhận cập nhật thông tin?";
+var succeedMSG = "Cập nhật thành công!"
+var redirectURL = "/profile"
 
-        }
-    };
-})
+// $("#form").submit(function(e) {
+//     e.preventDefault();
+//     if(checkinput()){
+//         if(confirm("are you sure?")) {
+//             var form = $(this);
+//             var actionUrl = form.attr('action');
+//             $.ajax({
+//                 type: "POST",
+//                 url: actionUrl,
+//                 data: form.serialize(), // serializes the form's elements.
+//                 success: function(data)
+//                 {
+//                 if(data.msg !== "succeed") alert(data.msg); 
+//                 else {
+//                     alert("Cập nhật thành công!")
+//                     window.location.replace("/profile");
+//                 }
+//                 }
+//             });
+//         }
+//         else {
+
+//         }
+//     };
+// })

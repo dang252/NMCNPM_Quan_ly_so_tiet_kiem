@@ -11,11 +11,12 @@
     <title>{{title}}</title>
 </head>
 <body>
-    <div class="container rounded-5 border vh-100">
+    <div class="container">
     {{> navbar}}
     {{{body}}}
     </div>
-    <script src="js/{{script}}"></script>
+    {{#if script}}<script src="js/{{script}}"></script>{{/if}}
+    {{#if form}}<script src="js/formhandle.js"></script>{{/if}}
     <script src="js/sidebar.js"></script>
 </body>
 </html>

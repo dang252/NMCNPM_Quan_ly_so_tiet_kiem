@@ -11,7 +11,7 @@
             <div class="sum">
                 <i class="icon iconSum"></i>
                 <p>Tổng số tiền trong sổ</p>
-                <h1>$0</h1>
+                <h1>${{summary}}</h1>
             </div>
             <div class="send">
                 <i class="icon iconSend"></i>
@@ -37,9 +37,12 @@
         <h2 class="username">{{username}}</h2>
         <h3 class="usermail">{{email}}</h3>
         <a href="/profile"><button type="button" class="editprofile">Edit Profile</button></a>
-        <div class="savingbook"></div>
-        <div class="savingbook"></div>
-        <div class="savingbook"></div>
-        <div class="savingbook"></div>
+        {{#each passbooks}}
+        <div class="savingbook">
+            <i class="icon iconWithdraw"></i>
+            <p>{{this.passbook_name}}</p>
+            <h1>${{this.passbook_deposits}}</h1>
+        </div>
+        {{/each}}
     </div>
 </div>

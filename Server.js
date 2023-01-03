@@ -30,7 +30,7 @@ registerR = require('./routes/register.r')
 loginR = require('./routes/login.r')
 dashboardR = require('./routes/dashboard.r')
 profileR = require('./routes/profile.r.js')
-createPBR = require('./routes/createPassbook.r')
+createPBR = require('./routes/createPB.r')
 app.get('/', (req, res) => {
     res.redirect('/register')
 })

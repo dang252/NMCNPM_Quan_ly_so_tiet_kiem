@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const createPBC = require('../controllers/createPassbook.c.js')
+const createPBC = require('../controllers/createPB.c.js')
 
 router.get('/', createPBC.createPBGet)
 
-// router.post('/', profileC.profilePost )
+router.post('/', createPBC.createPBPost )
 
 module.exports = router;
