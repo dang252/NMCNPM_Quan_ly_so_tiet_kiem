@@ -1,0 +1,43 @@
+<div class="main">
+    <div class="mainHeader">
+        <button type="button" class="sidebarButton">
+            <i class="icon iconSidebar"></i>
+        </button>
+        <p>Profile</p>
+    </div>
+    <div>
+        <form action="#" id="form" method="POST">
+            <div class = "booknameBox box">
+                <label for="bookname">Tên sổ:</label>
+                <input type="text" id="bookname" name="bookname" value="{{bookname}}"  maxlength="30" readonly>
+            </div>
+            <div class = "typeBox box">
+                <label for="type">Loại sổ:</label>
+                <input type="text" id="type" name="type" value="{{type}}" readonly>
+            </div>
+            <div class = "depositBox box">
+                <label for="deposit">Số dư trong sổ:</label>
+                <input type="number" id="deposit" name="deposit" step="1" min="100000" value="{{deposit}}"readonly>
+            </div>
+            <div class = "dateBox box">
+                <label for="date">Ngày mở sổ:</label>
+                <input type="date" id="date" name="date" value ="{{date}}" readonly>
+            </div>
+            {{#if expdate}}
+            <div class = "expdateBox box">
+                <label for="expdate">Ngày đáo hạn:</label>
+                <input type="date" id="expdate" name="expdate" value ="{{expdate}}" readonly>
+            </div>
+            {{/if}}
+            <div id="btn_side">
+                {{#if depositable}}
+                <input id="confirmBtn" type="submit" value="gửi tiền"></input>
+                {{/if}}
+                {{#if withdrawable}}
+                <input id="confirmBtn" type="submit" value="tất toán"></input>
+                {{/if}}
+                <a href="/dashboard"><button id="gobackBtn" type="button">Quay lại</button></button></a>
+            </div>
+        </form>
+    </div>
+</div>

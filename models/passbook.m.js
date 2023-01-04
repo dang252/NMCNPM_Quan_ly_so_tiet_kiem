@@ -10,5 +10,17 @@ module.exports = {
     getAll: async customerID => {
         const rs = await db.any('select * from passbook where customer_id = $1', [customerID])
         return rs;
-    }
+    },
+    getByID: async passbookID => {
+        const rs = await db.oneOrNone('select *from passbook where passbook_id = $1', [passbookID])
+        return rs;
+    },
+    getExpdate3M: async passbookID => {
+        const rs = await db.oneOrNone('select passbook_name + 30*3 from passbook where passbook_id = $1', [passbookID])
+        return rs;
+    },
+    getExpdate6M: async passbookID => {
+        const rs = await db.oneOrNone('select passbook_date + 30*6 as expdate from passbook where passbook_id = $1', [passbookID])
+        return rs;
+    },
 }

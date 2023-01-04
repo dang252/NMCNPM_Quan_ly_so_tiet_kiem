@@ -1,13 +1,63 @@
 const userM = require('../models/user.m');
-const passbookM = require('../models/passbook.m')
+const passbookM = require('../models/passbook.m');
 
+function getDate(date_obj) {
+    let day = ("0" + date_obj.getDate()).slice(-2);
+    let month = ("0" + (date_obj.getMonth() + 1)).slice(-2);
+    let year = date_obj.getFullYear();
+    let date = year + "-" + month + "-" + day;
+    return date;
+}
 module.exports = {
     passbookGet: (req,res) => {
         res.redirect('/dashboard')
     },
     
-    passbookPost: (req, res) => {
-        res.send(req.body)
+    passbookPost: async (req, res) => {
+        passbookID = req.body.passbookID
+        const passbookInfo = await passbookM.getByID(passbookID);
+        if(!passbookInfo) res.redirect('/dashboard')
+        //nếu sổ đang được truy suất không phải của tài khoản hiện tại thì quay về dashboard
+        if (!req.user || req.user.customer_id != passbookInfo.customer_id)
+            res.redirect('/dashboard')
+        let today_obj = new Date();
+        let today = getDate(today_obj);
+        if(passbookInfo.passbook_type == "NO") {
+            passbookType = "Không kỳ hạn";
+            depositable = true;
+            withdrawable = true;
+            expdate = false;
+        }
+        else {
+            if (passbookInfo.passbook_type == "3M") {
+                passbookType = "Kỳ hạn 3 tháng";
+                expdate_obj = await passbookM.getExpdate3M(passbookID)
+            }
+            else {
+                passbookType = "Kỳ hạn 6 tháng";
+                expdate_obj = await passbookM.getExpdate6M(passbookID)
+            }
+            expdate = getDate(expdate_obj.expdate)
+            depositable = false;
+            if (expdate == today) {
+                withdrawable = true;
+            }
+            else withdrawable = false;
+        }     
+        res.render('passbookDetails', {
+            active: {},
+            layout: "working",
+            title: "Thông tin sổ",
+            style: "form.css",
+            script: "createPB.js",
+            bookname: passbookInfo.passbook_name,
+            type: passbookType,
+            deposit: passbookInfo.passbook_deposits,
+            date: getDate(passbookInfo.passbook_date),
+            expdate: expdate,
+            depositable: depositable,
+            withdrawable: withdrawable
+        })
     },
     createGet: async (req, res) => {
         if(req.isUnauthenticated()){
@@ -17,11 +67,8 @@ module.exports = {
         if(passbooks.length >= 10) {
             return res.redirect('/dashboard');
         }
-        let date_ob = new Date();
-        let date = ("0" + date_ob.getDate()).slice(-2);
-        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-        let year = date_ob.getFullYear();
-        let today = year + "-" + month + "-" + date;
+        let today_obj = new Date();
+        let today = getDate(today_obj);
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         res.render('createPassbook', {
             active: {dashboard: true},
