@@ -31,4 +31,4 @@ function checkinput(){
 }
 var confirmMSG = "Xác nhận mở số tiết kiệm mới?";
 var succeedMSG = "Mở sổ thành công!"
-var redirectURL = "/dashboard"
+var redirectURL = "/passbook"

@@ -9,8 +9,22 @@ function getDate(date_obj) {
     return date;
 }
 module.exports = {
-    passbookGet: (req, res) => {
-        res.send("ok")
+    passbookGet: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
+        const passbooks = await passbookM.getAll(req.user.customer_id)
+        if(passbooks.length < 10) createable = true
+        else createable = false
+        res.render('passbookList', {
+            active: {passbook: true},
+            layout: "working",
+            title: "Danh sách sổ tiết kiệm",
+            style: "passbookList.css",
+            script: "dashboard.js",
+            createable: createable,
+            passbooks: passbooks,
+        })
     },
     passbookPost: (req,res) => {
         res.send("ok")
@@ -53,7 +67,7 @@ module.exports = {
         res.render('passbookDetails', {
             active: {passbook: true},
             layout: "working",
-            title: "Thông tin sổ",
+            title: "Thông tin chi tiết",
             style: "form.css",
             script: "createPB.js",
             bookname: passbookInfo.passbook_name,
