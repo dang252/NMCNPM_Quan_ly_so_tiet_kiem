@@ -15,18 +15,18 @@
                     </a>
                     <!-- <i class="iconActive"></i> -->
                 </li>
-                <li>
+                {{!-- <li>
                     <a href="#" {{#if active.savings}} class="active"  {{/if}}>
                         <i class="icon iconSavings"></i>
                         <span>Savings</span>
                         {{#if active.savings}} <i class="iconActive"></i> {{/if}}
                     </a>
-                </li>
+                </li> --}}
                 <li>
-                    <a href="#" {{#if active.saved}} class="active"  {{/if}}>
+                    <a href="/passbook" {{#if active.passbook}} class="active"  {{/if}}>
                         <i class="icon iconSaved"></i>
-                        <span>Saved</span>
-                        {{#if active.saved}} <i class="iconActive"></i> {{/if}}
+                        <span>Danh sách STK</span>
+                        {{#if active.passbook}} <i class="iconActive"></i> {{/if}}
                     </a>
                 </li>
                 <li>

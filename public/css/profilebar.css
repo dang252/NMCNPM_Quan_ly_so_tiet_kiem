@@ -98,11 +98,6 @@
     background-color: #C6C6C6;
 }
 
-.iconAdd {
-    background-image: url('../icon/add.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
 
 .profilebar .addBtn .icon {
     display: flex;

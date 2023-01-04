@@ -9,11 +9,17 @@ function getDate(date_obj) {
     return date;
 }
 module.exports = {
-    passbookGet: (req,res) => {
+    passbookGet: (req, res) => {
+        res.send("ok")
+    },
+    passbookPost: (req,res) => {
+        res.send("ok")
+    },
+    detailsGet: (req,res) => {
         res.redirect('/dashboard')
     },
     
-    passbookPost: async (req, res) => {
+    detailsPost: async (req, res) => {
         passbookID = req.body.passbookID
         const passbookInfo = await passbookM.getByID(passbookID);
         if(!passbookInfo) res.redirect('/dashboard')
@@ -45,7 +51,7 @@ module.exports = {
             else withdrawable = false;
         }     
         res.render('passbookDetails', {
-            active: {},
+            active: {passbook: true},
             layout: "working",
             title: "Thông tin sổ",
             style: "form.css",
@@ -71,7 +77,7 @@ module.exports = {
         let today = getDate(today_obj);
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         res.render('createPassbook', {
-            active: {dashboard: true},
+            active: {passbook: true},
             layout: "working",
             title: "Mở sổ",
             style: "form.css",

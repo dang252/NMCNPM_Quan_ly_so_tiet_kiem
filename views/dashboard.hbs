@@ -39,7 +39,7 @@
         <a href="/profile"><button type="button" class="editprofile">Edit Profile</button></a>
         {{#each passbooks}}
         <div class="savingbook">
-            <form action="/passbook" method="post">
+            <form action="/passbook/details" method="post">
                 <input type="number" name="passbookID" value="{{this.passbook_id}}" hidden>
             </form>
             <i class="icon iconSum"></i>

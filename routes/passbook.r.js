@@ -6,6 +6,10 @@ router.get('/', passbookC.passbookGet)
 
 router.post('/', passbookC.passbookPost)
 
+router.get('/details', passbookC.detailsGet)
+
+router.post('/details', passbookC.detailsPost)
+
 router.get('/create', passbookC.createGet)
 
 router.post('/create', passbookC.createPost)

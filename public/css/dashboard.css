@@ -9,27 +9,6 @@
     background-position: 50%;
 }
 
-.iconSum {
-    background-image: url('../icon/sum.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-
-.iconSend {
-    background-image: url('../icon/send.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-
-.iconWithdraw {
-    background-image: url('../icon/withdraw.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-
 .mainDashboard {
     background-color: #E5E5E5;
     min-width: calc(100% - 325px);
