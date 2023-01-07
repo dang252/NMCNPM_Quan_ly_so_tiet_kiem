@@ -9,6 +9,14 @@ function countSumary(passbooks) {
     return rs;
 } 
 
+function countDeposit(deposits) { 
+     let rs = 0;
+     for(let i = 0; i < deposits.length; i++) {
+        rs += deposits[i].depslip_amount;
+    }
+    return rs; 
+}
+
 module.exports = {
     dashboardGet: async (req, res) => {
         if(req.isUnauthenticated()){
@@ -16,6 +24,7 @@ module.exports = {
         }
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         const passbooks = await passbookM.getAll(req.user.customer_id)
+        const deposits = await passbookM.getDepositThisMonth(req.user.customer_id)
         if(passbooks.length < 10) createable = true
         else createable = false
         res.render('dashboard', {
@@ -25,6 +34,8 @@ module.exports = {
             style: "dashboard.css",
             script: "dashboard.js",
             summary: countSumary(passbooks),
+            deposits: deposits,
+            depositAmount: countDeposit(deposits),
             createable: createable,
             passbooks: passbooks,
             username: req.user.username,

@@ -1,5 +1,6 @@
 const userM = require('../models/user.m');
 const passbookM = require('../models/passbook.m');
+const { user } = require('../config/cnStr');
 
 function getDate(date_obj) {
     let day = ("0" + date_obj.getDate()).slice(-2);
@@ -27,13 +28,16 @@ module.exports = {
         })
     },
     passbookPost: (req,res) => {
-        res.send("ok")
+        res.redirect('/dashboard')
     },
     detailsGet: (req,res) => {
         res.redirect('/dashboard')
     },
     
     detailsPost: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
         passbookID = req.body.passbookID
         const passbookInfo = await passbookM.getByID(passbookID);
         if(!passbookInfo) res.redirect('/dashboard')
@@ -59,7 +63,7 @@ module.exports = {
             }
             expdate = getDate(expdate_obj.expdate)
             depositable = false;
-            if (expdate == today) {
+            if (expdate <= today) {
                 withdrawable = true;
             }
             else withdrawable = false;
@@ -70,6 +74,7 @@ module.exports = {
             title: "Thông tin chi tiết",
             style: "form.css",
             script: "createPB.js",
+            passbookID: passbookID,
             bookname: passbookInfo.passbook_name,
             type: passbookType,
             deposit: passbookInfo.passbook_deposits,
@@ -105,6 +110,9 @@ module.exports = {
         })
     },
     createPost: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         passbook = {
             type: req.body.type,
@@ -114,6 +122,52 @@ module.exports = {
             customerID: userInfo.customer_id
         }
         await passbookM.addPB(passbook);
+        res.send({msg: "succeed"})
+    },
+    depositGet: (req,res) => {
+        res.redirect('/dashboard')
+    },
+    depositPost: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
+        passbookID = req.body.passbookID
+        const userInfo = await userM.getCustomerByUsername(req.user.username)
+        const passbookInfo = await passbookM.getByID(passbookID);
+        if(!passbookInfo) res.redirect('/dashboard')
+        //nếu sổ đang được truy suất không phải của tài khoản hiện tại thì quay về dashboard
+        if (!req.user || req.user.customer_id != passbookInfo.customer_id)
+            res.redirect('/dashboard')
+        let today_obj = new Date();
+        let today = getDate(today_obj);
+        res.render('depositMoney', {
+            active: {passbook: true},
+            passbookID: passbookID,
+            layout: "working",
+            title: "Gửi tiền",
+            style: "form.css",
+            script: "deposit.js",
+            form: true,
+            fullname: userInfo.customer_name,
+            bookname: passbookInfo.passbook_name,
+            bookdeposit: passbookInfo.passbook_deposits,
+            date: today
+        })
+    },
+    depositPostLoading: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
+        passbookID = req.body.passbookID
+        const passbookInfo = await passbookM.getByID(passbookID);
+        const userInfo = await userM.getCustomerByUsername(req.user.username)
+        data = {
+            depositAmount: req.body.deposit,
+            passbookID: req.body.passbookID,
+            customerID: userInfo.customer_id,
+            date: req.body.date,
+        }
+        await passbookM.depositMoney(data);
         res.send({msg: "succeed"})
     }
 }

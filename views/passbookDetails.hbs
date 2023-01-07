@@ -7,6 +7,7 @@
     </div>
     <div>
         <form action="#" id="form" method="POST">
+            <input type="number" name="passbookID" value="{{passbookID}}" hidden>
             <div class = "booknameBox box">
                 <label for="bookname">Tên sổ:</label>
                 <input type="text" id="bookname" name="bookname" value="{{bookname}}"  maxlength="30" readonly>
@@ -31,10 +32,10 @@
             {{/if}}
             <div id="btn_side">
                 {{#if depositable}}
-                <input id="confirmBtn" type="submit" value="gửi tiền"></input>
+                <input id="confirmBtn" type="submit" value="Gửi tiền" formaction="/passbook/details/deposit"></input>
                 {{/if}}
                 {{#if withdrawable}}
-                <input id="confirmBtn" type="submit" value="tất toán"></input>
+                <input id="confirmBtn" type="submit" value="Tất toán"></input>
                 {{/if}}
                 <a href="/dashboard"><button id="gobackBtn" type="button">Quay lại</button></button></a>
             </div>

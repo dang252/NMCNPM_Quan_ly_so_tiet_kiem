@@ -16,7 +16,7 @@
             <div class="send">
                 <i class="icon iconSend"></i>
                 <p>Đã gửi vào tháng này</p>
-                <h1>$0</h1>
+                <h1>${{depositAmount}}</h1>
             </div>
             <div class="withdraw">
                 <i class="icon iconWithdraw"></i>
@@ -24,9 +24,13 @@
                 <h1>$0</h1>
             </div>
         </div>
-        {{!-- <div class="noti">
+        {{#each deposits}}
+        <div class="noti">
             <i class="icon iconSend"></i>
-        </div> --}}
+            <h2>Sổ {{this.passbook_name}}</h2>
+            <h2 class="amount">+${{this.depslip_amount}}</h2>
+        </div>
+        {{/each}}
     </div>
     <div class="profilebar">
         <div class="avatarContainer">

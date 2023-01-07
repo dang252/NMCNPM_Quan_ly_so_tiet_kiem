@@ -1,6 +1,5 @@
-
-
 var nameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/;
+var idRegex = /([1-9]{1})+([0-9]{8,11})\b/
 
 function checkinput(){
     var type = $("input[name = 'type']:checked").val();
@@ -16,16 +15,21 @@ function checkinput(){
         alert("Bạn chưa nhập số CMND/CCCD!");
         return false;
     }
-    if($("#bookname").val() == undefined) {
-        alert("Bạn chưa nhập tên sổ!");
+    if($("#citizenID").val() != '' && idRegex.test($("#citizenID").val()) == false) {
+        alert("Số CMND/CCCD không hợp lệ!");
         return false;
     }
-    if(!type){
-        alert("Bạn chưa chọn loại sổ!");
+    if($("#bookname").val() == "") {
+        alert("Bạn chưa nhập tên sổ!");
         return false;
     }
     if($("#deposit").val() == "") {
         alert("Bạn chưa nhập số tiền gửi!")
+        return false;
+    }
+    if(!($("#NO").is(':checked') || $("#3M").is(':checked') || $("#6M").is(':checked'))){
+        alert("Bạn chưa chọn loại sổ!");
+        return false;
     }
     return true;
 }

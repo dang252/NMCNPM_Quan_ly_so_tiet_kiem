@@ -60,6 +60,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 1% 5% 0 5%;
+    /* padding: 1em 1.5em; */
 }
 
 .summary .sum {
@@ -94,16 +95,21 @@
 }
 
 .mainDashboard .noti {
-    margin-left: 5%;
-    margin-right: 5%;
+    /* display: flex; */
+    margin:2% 5%;
     min-height: 60px;
     border-radius: 15px;
     background-color: #FFFFFF;
     display: flex;
     align-items: center;
+    padding: 0 1em;
     /* justify-content: space-around; */
 }
 
+.mainDashboard .noti .amount{
+    margin-left: auto;
+    margin-right: 0;
+}
 @media screen and (max-width: 1000px) {
     .profilebar{
         display: none;

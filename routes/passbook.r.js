@@ -14,4 +14,10 @@ router.get('/create', passbookC.createGet)
 
 router.post('/create', passbookC.createPost)
 
+router.get('/details/deposit', passbookC.depositGet)
+
+router.post('/details/deposit', passbookC.depositPost)
+
+router.post('/details/deposit/loading', passbookC.depositPostLoading)
+
 module.exports = router;
