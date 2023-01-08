@@ -20,4 +20,10 @@ router.post('/details/deposit', passbookC.depositPost)
 
 router.post('/details/deposit/loading', passbookC.depositPostLoading)
 
+router.get('/details/withdraw', passbookC.withdrawGet)
+
+router.post('/details/withdraw', passbookC.withdrawPost)
+
+router.post('/details/withdraw/loading', passbookC.withdrawPostLoading)
+
 module.exports = router;

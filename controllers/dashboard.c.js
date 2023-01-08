@@ -17,6 +17,14 @@ function countDeposit(deposits) {
     return rs; 
 }
 
+function countWithdraw(withdraws) { 
+    let rs = 0;
+    for(let i = 0; i < withdraws.length; i++) {
+       rs += withdraws[i].wdslip_amount;
+   }
+   return rs; 
+}
+
 module.exports = {
     dashboardGet: async (req, res) => {
         if(req.isUnauthenticated()){
@@ -25,6 +33,7 @@ module.exports = {
         const userInfo = await userM.getCustomerByUsername(req.user.username)
         const passbooks = await passbookM.getAll(req.user.customer_id)
         const deposits = await passbookM.getDepositThisMonth(req.user.customer_id)
+        const withdraws = await passbookM.getWithdrawThisMonth(req.user.customer_id)
         if(passbooks.length < 10) createable = true
         else createable = false
         res.render('dashboard', {
@@ -36,6 +45,7 @@ module.exports = {
             summary: countSumary(passbooks),
             deposits: deposits,
             depositAmount: countDeposit(deposits),
+            withdrawAmount: countWithdraw(withdraws),
             createable: createable,
             passbooks: passbooks,
             username: req.user.username,

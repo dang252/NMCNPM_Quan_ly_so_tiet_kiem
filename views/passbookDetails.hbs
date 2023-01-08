@@ -15,6 +15,7 @@
             <div class = "typeBox box">
                 <label for="type">Loại sổ:</label>
                 <input type="text" id="type" name="type" value="{{type}}" readonly>
+                <input type="text" id="type" name="type" value="{{typename}}" hidden>
             </div>
             <div class = "depositBox box">
                 <label for="deposit">Số dư trong sổ:</label>
@@ -34,8 +35,11 @@
                 {{#if depositable}}
                 <input id="confirmBtn" type="submit" value="Gửi tiền" formaction="/passbook/details/deposit"></input>
                 {{/if}}
+                 {{#if sendAgain}}
+                <input id="confirmBtn" type="submit" value="Tái tục" formaction="/passbook/details/sendAgain"></input>
+                {{/if}}
                 {{#if withdrawable}}
-                <input id="confirmBtn" type="submit" value="Tất toán"></input>
+                <input id="confirmBtn" type="submit" value="Tất toán" formaction="/passbook/details/withdraw"></input>
                 {{/if}}
                 <a href="/dashboard"><button id="gobackBtn" type="button">Quay lại</button></button></a>
             </div>

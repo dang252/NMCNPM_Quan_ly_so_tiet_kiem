@@ -1,6 +1,6 @@
 const userM = require('../models/user.m');
 const passbookM = require('../models/passbook.m');
-const { user } = require('../config/cnStr');
+
 
 function getDate(date_obj) {
     let day = ("0" + date_obj.getDate()).slice(-2);
@@ -8,6 +8,13 @@ function getDate(date_obj) {
     let year = date_obj.getFullYear();
     let date = year + "-" + month + "-" + day;
     return date;
+}
+
+function getInterest(passbookInfo) {
+    if (passbookInfo.passbook_type == "3M")
+        return passbookInfo.passbook_deposits * 3 * 0.005 * passbookInfo.passbook_times;
+    else 
+        return passbookInfo.passbook_deposits * 6 * 0.0055 * passbookInfo.passbook_times;
 }
 module.exports = {
     passbookGet: async (req, res) => {
@@ -48,6 +55,7 @@ module.exports = {
         let today = getDate(today_obj);
         if(passbookInfo.passbook_type == "NO") {
             passbookType = "Không kỳ hạn";
+            sendAgain = false;
             depositable = true;
             withdrawable = true;
             expdate = false;
@@ -64,9 +72,13 @@ module.exports = {
             expdate = getDate(expdate_obj.expdate)
             depositable = false;
             if (expdate <= today) {
+                sendAgain = true;
                 withdrawable = true;
             }
-            else withdrawable = false;
+            else {
+                withdrawable = false;
+                sendAgain = false;
+            }
         }     
         res.render('passbookDetails', {
             active: {passbook: true},
@@ -77,9 +89,11 @@ module.exports = {
             passbookID: passbookID,
             bookname: passbookInfo.passbook_name,
             type: passbookType,
+            typename: passbookInfo.passbook_type,
             deposit: passbookInfo.passbook_deposits,
             date: getDate(passbookInfo.passbook_date),
             expdate: expdate,
+            sendAgain: sendAgain,
             depositable: depositable,
             withdrawable: withdrawable
         })
@@ -168,6 +182,59 @@ module.exports = {
             date: req.body.date,
         }
         await passbookM.depositMoney(data);
+        res.send({msg: "succeed"})
+    },
+    withdrawGet: (req,res) => {
+        res.redirect('/dashboard')
+    },
+    withdrawPost: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
+        passbookID = req.body.passbookID
+        const userInfo = await userM.getCustomerByUsername(req.user.username)
+        const passbookInfo = await passbookM.getByID(passbookID);
+        if(!passbookInfo) res.redirect('/dashboard')
+        //nếu sổ đang được truy suất không phải của tài khoản hiện tại thì quay về dashboard
+        if (!req.user || req.user.customer_id != passbookInfo.customer_id)
+            res.redirect('/dashboard')
+        let today_obj = new Date();
+        let today = getDate(today_obj);
+        if(passbookInfo.passbook_type == "NO") {withdrawAll = false; interest = false}
+        else {withdrawAll = true; interest = getInterest(passbookInfo)}
+        //console.log(interset)
+        res.render('withdrawMoney', {
+            active: {passbook: true},
+            passbookID: passbookID,
+            layout: "working",
+            title: "Rút tiền",
+            style: "form.css",
+            script: "withdraw.js",
+            withdrawAll: withdrawAll,
+            interest: interest,
+            form: true,
+            fullname: userInfo.customer_name,
+            bookname: passbookInfo.passbook_name,
+            bookdeposit: passbookInfo.passbook_deposits,
+            date: today
+        })
+    },
+    withdrawPostLoading: async (req, res) => {
+        if(req.isUnauthenticated()){
+            return res.redirect('/login');
+        }
+        passbookID = req.body.passbookID
+        const passbookInfo = await passbookM.getByID(passbookID);
+        const userInfo = await userM.getCustomerByUsername(req.user.username)
+        data = {
+            withdrawAmount: req.body.withdraw,
+            passbookID: req.body.passbookID,
+            customerID: userInfo.customer_id,
+            date: req.body.date,
+        }
+        // console.log(req.body.withdraw)
+        // res.send("ok")
+        await passbookM.withdrawMoney(data);
         res.send({msg: "succeed"})
     }
 }
