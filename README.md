@@ -22,7 +22,7 @@ Sau khi tải project từ github về máy tính cá nhân, ta cần thực hi�
 ### VIDEO DEMO ĐỒ ÁN
 [Link video demo](https://youtu.be/AUGFdoGetgI)
 
-### MỘT SỐ CHỨC NĂNG CƠ BẢN CỦA ĐỒ ÁN
+### MỘT SỐ CHỨC NĂNG CƠ BẢN CỦA ĐỒ ÁN (CURRENT STATUS)
 * Đăng ký, đăng nhập tài khoản.
 * Tạo sổ tiết kiệm với 3 loại sổ là: không kỳ hạn, kỳ hạn 3 tháng và kỳ hạn 6 tháng.
 * Gửi thêm tiền/Rút tiền tự do đối với sổ tiết kiệm không có kỳ hạn.
@@ -30,4 +30,14 @@ Sau khi tải project từ github về máy tính cá nhân, ta cần thực hi�
 * Khi sổ có kỳ hạn đã đến ngày đáo hạn, người dùng có thể chọn rút hết tiền hoặc gửi lại một lần nữa, nếu rút tiền thì sẽ có thêm tiền lời.
 * Cập nhật, tùy chỉnh profile cá nhân của người dùng.
 * Thông báo biến động số dư, hiển thị rõ số tiền đã gửi/số tiền đã rút trong tháng.
+
+### CÁC DỰ ĐỊNH PHÁT TRIỂN TIẾP THEO (FUTURE PLAN)
+* Hoàn thiện hơn chức năng "tái tục"(Gửi lại sổ 1 lần nữa đối với những sổ đã đến kỳ hạn, tăng số lần gửi của sổ thêm 1)
+* Hoàn thiện chức năng thông báo chi tiết biến động số dư, hiện tại server chỉ thông báo số tiền được gửi vào chứ chưa thông báo số tiền đã được rút ra, đồng thời cần phải xử lý database lại để chức năng thông báo biến động số dư hoạt động hiệu quả hơn, giảm số lần phải truy suất trong database.
+* Chỉnh sửa lại các lỗi đã phát hiện ra trong quá trình testing.
+* Tìm phương pháp deploy để project trở thành một phần mềm đúng nghĩa.
+* Làm chức năng tạo báo cáo chi tiết trong tháng, nếu có thể sẽ nghiên cứu để xuất ra file. 
+* Tính toán, tìm cách để thực hiện được chức năng thay đổi luật gửi tiền mà trong đề bài ban đầu đã đưa ra (thay đổi được các luật mà không ảnh hưởng tới các sổ trước đó như đổi các loại kỳ hạn, đổi số tiền gửi tối thiểu,...)
+* Chỉnh sửa ở phần front-end cho đẹp hơn (có thể hướng tới single page application)
+
  
